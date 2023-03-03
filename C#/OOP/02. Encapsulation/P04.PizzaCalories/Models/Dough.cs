@@ -50,7 +50,7 @@
             }
             set
             {
-                if (!this.flourTypeMultipliers.ContainsKey(value))
+                if (!this.flourTypeMultipliers.ContainsKey(value.ToLower()))
                 {
                     throw new ArgumentException("Invalid type of dough.");
                 }
@@ -66,7 +66,7 @@
             }
             set
             {
-                if (!this.bakingTechniquesMultipliers.ContainsKey(value))
+                if (!this.bakingTechniquesMultipliers.ContainsKey(value.ToLower()))
                 {
                     throw new ArgumentException("Invalid type of dough.");
                 }
@@ -77,7 +77,7 @@
 
         public double GetCalories()
         {
-            double calories = ((this.baseMultiplier * this.Grams) * this.flourTypeMultipliers[this.FlourType] * this.bakingTechniquesMultipliers[this.BakingTechnique]);
+            double calories = ((this.baseMultiplier * this.Grams) * this.flourTypeMultipliers[this.FlourType.ToLower()] * this.bakingTechniquesMultipliers[this.BakingTechnique.ToLower()]);
 
             return calories;
         }
@@ -86,17 +86,17 @@
         {
             this.bakingTechniquesMultipliers = new Dictionary<string, double>();
 
-            this.bakingTechniquesMultipliers.Add("Crispy", 0.9);
-            this.bakingTechniquesMultipliers.Add("Chewy", 1.1);
-            this.bakingTechniquesMultipliers.Add("Homemade", 1.0);
+            this.bakingTechniquesMultipliers.Add("crispy", 0.9);
+            this.bakingTechniquesMultipliers.Add("chewy", 1.1);
+            this.bakingTechniquesMultipliers.Add("homemade", 1.0);
         }
 
         private void SeedFlourTypeMultipliers()
         {
             this.flourTypeMultipliers = new Dictionary<string, double>();
 
-            this.flourTypeMultipliers.Add("White", 1.5);
-            this.flourTypeMultipliers.Add("Wholegrain", 1.0);
+            this.flourTypeMultipliers.Add("white", 1.5);
+            this.flourTypeMultipliers.Add("wholegrain", 1.0);
         }
     }
 }

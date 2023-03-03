@@ -28,7 +28,7 @@
             }
             set 
             {
-                if (!this.toppingTypeMultipliers.ContainsKey(value))
+                if (!this.toppingTypeMultipliers.ContainsKey(value.ToLower()))
                 {
                     throw new ArgumentException($"Cannot place {value} on top of your pizza.");
                 }
@@ -54,7 +54,7 @@
 
         public double GetCalories()
         {
-            double calories = ((this.baseMultiplier * this.Grams) * this.toppingTypeMultipliers[this.Type]);
+            double calories = ((this.baseMultiplier * this.Grams) * this.toppingTypeMultipliers[this.Type.ToLower()]);
 
             return calories;
         }
@@ -63,10 +63,10 @@
         {
             toppingTypeMultipliers = new Dictionary<string, double>();
 
-            toppingTypeMultipliers.Add("Meat", 1.2);
-            toppingTypeMultipliers.Add("Veggies", 0.8);
-            toppingTypeMultipliers.Add("Cheese", 1.1);
-            toppingTypeMultipliers.Add("Sauce", 0.9);
+            toppingTypeMultipliers.Add("meat", 1.2);
+            toppingTypeMultipliers.Add("veggies", 0.8);
+            toppingTypeMultipliers.Add("cheese", 1.1);
+            toppingTypeMultipliers.Add("sauce", 0.9);
         }
     }
 }
