@@ -1,9 +1,10 @@
 ﻿namespace Bakery.Core
 {
+    using System;
+
     using Bakery.Core.Contracts;
     using Bakery.IO;
     using Bakery.IO.Contracts;
-    using System;
 
     public class Engine : IEngine
     {
@@ -15,7 +16,7 @@
         {
             this.writer = new Writer();
             this.reader = new Reader();
-            // this.controller = new Controller();
+            this.controller = new Controller();
         }
 
         public void Run()

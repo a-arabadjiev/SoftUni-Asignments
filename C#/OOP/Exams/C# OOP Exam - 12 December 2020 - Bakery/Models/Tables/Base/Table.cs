@@ -71,11 +71,6 @@
             }
             protected set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException(ExceptionMessages.InvalidNumberOfPeople);
-                }
-
                 this.numberOfPeople = value;
             }
         }
@@ -86,7 +81,7 @@
 
         public decimal Price
             => FoodOrders.Select(f => f.Price).Sum()
-            + FoodOrders.Select(f => f.Price).Sum()
+            + DrinkOrders.Select(f => f.Price).Sum()
             + this.NumberOfPeople * this.PricePerPerson;
 
 
@@ -129,6 +124,11 @@
         public void Reserve(int numberOfPeople)
         {
             this.IsReserved = true;
+
+            if (numberOfPeople <= 0)
+            {
+                throw new ArgumentException(ExceptionMessages.InvalidNumberOfPeople);
+            }
 
             this.NumberOfPeople = numberOfPeople;
         }
